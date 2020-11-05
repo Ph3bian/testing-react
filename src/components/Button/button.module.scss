@@ -3,12 +3,16 @@
   width: 100%;
   font-size: 1rem;
   cursor: pointer;
-  transition: all 0.2s;
   touch-action: manipulation;
   position: relative;
-  padding: 1em 0.8em;
-  line-height: 1.28rem;
-  color: white;
+  color: $white;
+  height: 3em;
   border-radius: 3px;
+  font-family: Jost;
+  border:0;
   background: $primary-color;
+  &:hover{
+    color: $white;
+    background: lighten($color: $primary-color, $amount: .4);
+  }
 }

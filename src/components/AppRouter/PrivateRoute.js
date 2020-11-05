@@ -1,7 +1,7 @@
 import React  from 'react'
 import { Route, Redirect } from 'react-router-dom'
 import ErrorBoundary from '../ErrorBoundary'
-import Layout from '../Layout'
+import PrivateLayout from '../Layout/layout'
 
 const PrivateRoute = ({
   component: Component,
@@ -17,9 +17,9 @@ const PrivateRoute = ({
       render={props =>
         isAuthenticated ? (
           <ErrorBoundary>
-            <Layout>
+            <PrivateLayout>
               <Component {...props} />
-            </Layout>
+            </PrivateLayout>
           </ErrorBoundary>
         ) : (
           <Redirect to="/login" />

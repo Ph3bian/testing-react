@@ -5,7 +5,7 @@ const Input = ({ label, error, ...rest }) => {
   return (
     <div className={styles.Input}>
       <label>{label}</label>
-      <input {...rest} />
+      <input {...rest}  className={error&& styles.Error}/>
       {error && (
         <div>
           <span className={styles.InputError}> {error}</span>

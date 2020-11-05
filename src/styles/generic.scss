@@ -6,7 +6,7 @@
 html {
   font-size: 62.5%;
   scroll-behavior: smooth;
- 
+
   @include md {
     font-size: 75%;
   }
@@ -25,7 +25,7 @@ html {
 }
 
 body {
-  font-family: Jost;
+  font-family: 'Jost';
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   box-sizing: border-box;
@@ -51,7 +51,7 @@ body {
 
 button {
   cursor: pointer;
-
+  font-family: Jost;
   &:focus,
   &:visited,
   &:active {
@@ -71,6 +71,10 @@ a {
   }
 }
 
-h1 {
-  margin: 0;
+h1,
+h2,
+h3,
+p,
+input {
+  font-family: inherit;
 }

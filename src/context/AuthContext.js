@@ -11,7 +11,6 @@ export const getDefaultAuth = () => {
   }
 }
 
-//On user logout remove token from localstorage
 export const setLogout = () => {
   localStorage.removeItem('authToken')
   window.location.href = '/'

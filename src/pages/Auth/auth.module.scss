@@ -1,0 +1,63 @@
+@import '../../styles/variables';
+@import '../../styles/breakpoint';
+
+.Auth {
+  font-size: 1rem;
+  background: $white;
+  border-radius: 5px;
+  font-family: Jost;
+  display: grid;
+  height: 100%;
+  grid-template-rows: auto 1fr auto;
+  grid-row-gap:1em;
+  grid-template-areas:
+    'header'
+    'body'
+    'footer';
+  @include sm {
+    padding: 0 1em;
+  }
+
+  h3 {
+    text-align: center;
+    margin-top: 0;
+    margin-bottom: 1.5em;
+    font-family: 'Jost';
+    font-weight: 400;
+    grid-area: header;
+    &::after {
+      content: '';
+      display: block;
+      height: 0.15em;
+      width: 2em;
+      background: $primary-color;
+      margin: auto;
+      border-radius: 0.1em;
+    }
+  }
+  &Body {
+    grid-area: body;
+    .isTwo {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      grid-column-gap: 1.5em;
+      @include sm {
+        grid-column-gap: 1em;
+      }
+    }
+  }
+  &Footer {
+    grid-area: footer;
+    button {
+      margin: 1em 0 0;
+    }
+  }
+
+  .Completed {
+    text-align: center;
+    svg {
+      height: 3em;
+      width: 3em;
+    }
+  }
+}
