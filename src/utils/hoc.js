@@ -1,4 +1,4 @@
-import * as React  from 'react'
+import React  from 'react'
 import { AuthConsumer } from 'context/AuthContext'
 
 export const withAuth = WrappedComponent => {

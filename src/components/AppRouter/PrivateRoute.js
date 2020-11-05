@@ -1,4 +1,4 @@
-import * as React  from 'react'
+import React  from 'react'
 import { Route, Redirect } from 'react-router-dom'
 import ErrorBoundary from '../ErrorBoundary'
 import Layout from '../Layout'
