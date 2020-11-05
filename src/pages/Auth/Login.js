@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import Input from 'components/Input';
 import Button from 'components/Button';
-import { Validator } from './validation';
+import { loginValidator } from './validation';
 import styles from './auth.module.scss';
 
 const UserDetails = () => {
@@ -16,9 +16,10 @@ const UserDetails = () => {
   };
   const handleSubmit = (e) => {
     e.preventDefault();
-    const errors = Validator(user);
+    const errors = loginValidator(user);
     setErrors(errors);
     if (Object.keys(errors).length > 0) return;
+    
   };
   return (
     <form onSubmit={handleSubmit} className={styles.Auth}>

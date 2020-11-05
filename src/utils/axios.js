@@ -2,7 +2,7 @@ import axios from 'axios'
 import { getDefaultAuth, setLogout } from '../context/AuthContext'
 
 let Axios = axios.create({
-  baseURL: 'https://dummy-endpoint-url.com',
+  baseURL: 'https://testing-react.com',
   headers: {
     'Content-Type': 'application/json'
   }
