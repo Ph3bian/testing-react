@@ -1,11 +1,17 @@
-import React, { useState } from 'react';
+import React, {useContext, useState } from 'react';
+import { toaster } from "evergreen-ui"
+import AuthContext from 'context/AuthContext';
 import Input from 'components/Input';
+
 import Button from 'components/Button';
 import { Validator } from './validation';
 import styles from './auth.module.scss';
+import { registerUser } from 'services/auth';
 
-const UserDetails = () => {
+const RegisterUser = ({history}) => {
+  const {setAuthAndCache} = useContext(AuthContext);
   const [errors, setErrors] = useState({});
+  const [loading, setLoading] = useState(false);
   const [user, setUser] = useState({
     firstName: '',
     lastName: '',
@@ -17,11 +23,28 @@ const UserDetails = () => {
   const handleUser = ({ target: { value, name } }) => {
     return setUser({ ...user, [name]: value });
   };
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
     const errors = Validator(user);
     setErrors(errors);
     if (Object.keys(errors).length > 0) return;
+    setLoading(true);
+    try {
+      const {confirmPassword, ...data}=user
+      const res = await registerUser(data);
+      if (res) {
+        setLoading(false);
+        setAuthAndCache(res.data)
+        toaster.success('Create device successful');
+        history.push("home")
+      } else {
+        toaster.danger('Create device failed');
+        setLoading(false);
+      }
+    } catch (e) {
+      setLoading(false);
+      toaster.danger('Create device failed');
+    }
   };
   return (
     <form onSubmit={handleSubmit} className={styles.Auth}>
@@ -73,10 +96,12 @@ const UserDetails = () => {
         />
       </div>
       <div className={styles.AuthFooter}>
-        <Button type="submit"> Submit</Button>
+        <Button type="submit" isLoading={loading}>
+          Submit
+        </Button>
       </div>
     </form>
   );
 };
 
-export default UserDetails;
+export default RegisterUser;

@@ -16,7 +16,7 @@ export const setLogout = () => {
   window.location.href = '/'
 }
 
-export const AuthProviderContainer = ({ children, history }) => {
+export const AuthProviderContainer = ({ children }) => {
   const defaultAuth = getDefaultAuth()
   const [auth, setAuth] = useState(defaultAuth)
 
