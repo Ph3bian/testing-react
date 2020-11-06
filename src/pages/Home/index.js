@@ -64,7 +64,7 @@ const Home = () => {
       </div>
       <div className={styles.HomeEdit}>
         <div className={styles.Editor}>
-          <form>
+          <form onSubmit={handleSubmit}>
             <div className={styles.EditorCard}>
               <Input
                 type="text"
@@ -83,11 +83,12 @@ const Home = () => {
                 className={styles.description}
                 onChange={(e) => handlePost(e)}
               ></Textarea>
-               <Button type="button" onClick={handleSubmit} isLoading={loading}>
+                 <div className={styles.submit}>
+              <Button type="submit"  isLoading={loading}>
                 Submit
               </Button>
             </div>
-           
+            </div>
           </form>
         </div>
       </div>
