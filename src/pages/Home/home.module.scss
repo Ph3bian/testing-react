@@ -12,33 +12,62 @@
       padding: 1em;
       margin-bottom: 2em;
       border-radius: 5px;
+      h3 {
+        font-weight: 500;
+        color: #1f4160;
+
+        margin-top: 0;
+      }
+      p {
+        font-size: 0.85em;
+      }
+      &Action {
+        display: flex;
+        justify-content: space-between;
+        font-size: 0.8em;
+        text-transform: capitalize;
+      }
     }
   }
   &Edit {
     background: #f5f7fd;
     height: 100%;
     .Editor {
-        display: grid;
-        align-items: center;
-        height: 100%;
+      display: grid;
+      align-items: center;
+      height: 100%;
+      font-size: 1rem;
+      form{
+        margin: 0em 2em;
+      }
+      &Header {
+        h3 {
+          font-weight: 400;
+          background: white; 
+          padding: 1em 2em;
+          display: flex;
+          justify-content: center;
+       
+
+        }
+      }
       &Card {
-        margin: 4em 2em;
+      
         background: white;
         padding: 1.5em 2em;
         border-radius: 5px;
         min-height: 35em;
-        textarea{
-            height: 28em;
-            border: 1px solid #f0f4f9;
-            box-shadow: unset;
-            margin: 1em 0;
+        textarea {
+          height: 28em;
+          border: 1px solid #f0f4f9;
+          box-shadow: unset;
+          margin: 1em 0;
         }
-        .submit{
-            text-align: right;
-            button{
-                width: 10em;
-             
-            }
+        .submit {
+          text-align: right;
+          button {
+            width: 10em;
+          }
         }
       }
     }

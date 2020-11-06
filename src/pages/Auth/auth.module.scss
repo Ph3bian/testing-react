@@ -5,7 +5,7 @@
   font-size: 1rem;
   background: $white;
   border-radius: 5px;
-  font-family: Jost;
+  font-family: "Poppins";
   display: grid;
   height: 100%;
   grid-template-rows: auto 1fr auto;
@@ -22,7 +22,7 @@
     text-align: center;
     margin-top: 0;
     margin-bottom: 1.5em;
-    font-family: 'Jost';
+    font-family: 'Poppins';
     font-weight: 400;
     grid-area: header;
     &::after {
