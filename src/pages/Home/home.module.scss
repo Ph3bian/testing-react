@@ -1,0 +1,20 @@
+.Home {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  height: 100%;
+  font-size: 1rem;
+  &Content {
+    background: white;
+    padding: 2em;
+    overflow: auto;
+    .Posts {
+      border: 1px solid #e5e5e5;
+      padding: 1em;
+      margin-bottom: 2em;
+      border-radius: 5px;
+    }
+  }
+  &Edit {
+    background: #f5f7fd;
+  }
+}

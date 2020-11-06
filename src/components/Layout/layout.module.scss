@@ -1,12 +1,13 @@
+@import '../../styles/variables';
 .Public {
   display: grid;
   height: 100vh;
   grid-template-columns: 100%;
   grid-template-rows: 3.75em 1fr auto;
   grid-template-areas:
-    "header"
-    "body"
-    "footer";
+    'header'
+    'body'
+    'footer';
   .header {
     grid-area: header;
     background-color: white;
@@ -14,7 +15,6 @@
     display: flex;
     padding: 0 2em;
     font-weight: 400;
-
   }
   .body {
     grid-area: body;
@@ -29,7 +29,7 @@
       background: white;
       padding: 2em 3em;
       border-radius: 10px;
-     
+
       small {
         a {
           color: #0f8cff;
@@ -53,5 +53,31 @@
         color: #0f8cff;
       }
     }
+  }
+}
+.Private {
+  font-size: 1rem;
+  display: grid;
+  grid-template-columns: 4.5em 1fr;
+  grid-template-rows: 100%;
+  height: 100vh;
+  &Side {
+    display: grid;
+    width: 100%;
+    height: 100%;
+    background-color: $primary-color;
+    grid-template-rows: 4em 1fr 4em;
+    place-items: center;
+    svg{
+      color: $white;
+    }
+    &Logo {
+    }
+    &Footer {
+    }
+  }
+  &Main {
+    height: 100%;
+    width: 100%;
   }
 }

@@ -4,7 +4,7 @@ export const createPost = (post) => Axios.post(`/posts`, post);
 export const getPosts = async () => {
   try {
     const response = await Axios.get(`/posts`);
-    return response && response.data;
+    return response && response.data && response.data.post;
   } catch (errors) {
     return errors;
   }
