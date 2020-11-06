@@ -31,17 +31,17 @@ const Login = ({ history }) => {
       if (res) {
         setLoading(false);
         console.log(res);
-        toaster.success('Create device successful');
+        toaster.success('Login successful');
         setAuthAndCache(res.data);
         history.push('/home');
         return;
       } else {
-        toaster.danger('Create device failed');
+        toaster.danger('Login failed');
         setLoading(false);
       }
     } catch (e) {
       setLoading(false);
-      toaster.danger('Create device failed');
+      toaster.danger('Login failed');
     }
   };
   return (

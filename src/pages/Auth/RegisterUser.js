@@ -36,15 +36,15 @@ const RegisterUser = ({history}) => {
       if (res) {
         setLoading(false);
         setAuthAndCache(res.data)
-        toaster.success('Create device successful');
+        toaster.success('Create Account successful');
         history.push("home")
       } else {
-        toaster.danger('Create device failed');
+        toaster.danger('Create Account failed');
         setLoading(false);
       }
     } catch (e) {
       setLoading(false);
-      toaster.danger('Create device failed');
+      toaster.danger('Create Account failed');
     }
   };
   return (
