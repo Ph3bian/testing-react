@@ -7,27 +7,7 @@
     background: white;
     padding: 2em;
     overflow: auto;
-    .Posts {
-      border: 1px solid #e5e5e5;
-      padding: 1em;
-      margin-bottom: 2em;
-      border-radius: 5px;
-      h3 {
-        font-weight: 500;
-        color: #1f4160;
 
-        margin-top: 0;
-      }
-      p {
-        font-size: 0.85em;
-      }
-      &Action {
-        display: flex;
-        justify-content: space-between;
-        font-size: 0.8em;
-        text-transform: capitalize;
-      }
-    }
   }
   &Edit {
     background: #f5f7fd;

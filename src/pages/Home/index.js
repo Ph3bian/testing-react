@@ -1,17 +1,9 @@
 import React, { useState } from 'react';
 import { useQuery } from 'react-query';
-import { formatDistance } from 'date-fns';
-import {
-  Pane,
-  Text,
-  toaster,
-  Textarea,
-  Button as Badge,
-  TrashIcon,
-  EditIcon,
-} from 'evergreen-ui';
+import { Pane, Text, toaster, Textarea } from 'evergreen-ui';
 import Button from 'components/Button';
 import Input from 'components/Input';
+import Post from 'components/Post';
 import { getPosts, createPost } from 'services/post';
 import Delete from './delete';
 import styles from './home.module.scss';
@@ -19,7 +11,7 @@ const Home = () => {
   const [post, setPost] = useState({ title: '', description: '' });
   const [loading, setLoading] = useState(false);
   const [isShown, setShown] = useState(false);
-  const [errors, setErrors] = useState({});
+  // const [errors, setErrors] = useState({});
   const [currentPost, setCurrentPost] = useState('');
   const { isLoading, isError, data, error, refetch } = useQuery(
     'Posts',
@@ -27,6 +19,11 @@ const Home = () => {
   );
   const handlePost = ({ target: { value, name } }) => {
     return setPost({ ...post, [name]: value });
+  };
+  const handleDeletePost = (id) => {
+    setCurrentPost(id);
+    setShown(true);
+    return;
   };
   const handleSubmit = async () => {
     setLoading(true);
@@ -89,35 +86,7 @@ const Home = () => {
         <div className={styles.HomeContent}>
           {data &&
             data.map((posts, sn) => (
-              <div key={sn} className={styles.Posts}>
-                <h3>{posts.title}</h3>
-                <p className="textArea">{posts.description}</p>
-                <div className={styles.PostsAction}>
-                  <p>
-                    {' '}
-                    {formatDistance(new Date(posts.updated_at), new Date())}
-                  </p>
-                  <div>
-                    <Badge marginY={8} marginRight={12} iconBefore={EditIcon}>
-                      Edit
-                    </Badge>
-                    <Badge
-                      marginY={8}
-                      marginRight={12}
-                      iconBefore={TrashIcon}
-                      intent="danger"
-                      type="button"
-                      onClick={() => {
-                        setCurrentPost(posts.id);
-                        setShown(true);
-                        return;
-                      }}
-                    >
-                      Delete
-                    </Badge>
-                  </div>
-                </div>
-              </div>
+              <Post posts={posts} key={sn} handleDeletePost={handleDeletePost} />
             ))}
         </div>
       )}
@@ -134,7 +103,7 @@ const Home = () => {
                 name="title"
                 value={post.title}
                 onChange={(e) => handlePost(e)}
-                error={errors.post}
+              
               />
               <Textarea
                 type="text"

@@ -1,33 +1,31 @@
 import React from 'react';
-import ReactDOM from 'react-dom';
-// import { axe, toHaveNoViolations } from 'jest-axe';
+
+import { MemoryRouter } from 'react-router-dom';
 import { render, fireEvent } from '@testing-library/react';
-import userEvent from '@testing-library/user-event'
+import userEvent from '@testing-library/user-event';
 import Login from '../../pages/Auth/Login';
-
-describe('The <Button/> component', () => {
-  const fakeUser = {
-    email: 'thecarter@gmail.com',
-    password: 'Freedom',
-  };
-
+import AuthContext from '../../context/AuthContext';
+describe('The <Login/> component', () => {
   test('Should render correctly', () => {
-    render(<Login />);
-    userEvent.type(screen.getByLabelText(/email/i), email)
-    userEvent.type(screen.getByLabelText(/password/i), password)
-    userEvent.click(screen.getByRole('button', {name: /submit/i}))
+    const onSubmit = jest.fn();
+    const routerProps = {
+      initialEntries: ['/home', '/login'],
+      initialIndex: 0,
+    };
+    const LoginRendered = () => (
+      <AuthContext.Provider
+        value={{
+          setAuthAndCache: jest.fn(),
+        }}
+      >
+        <MemoryRouter {...routerProps}>
+          <Login />
+        </MemoryRouter>
+      </AuthContext.Provider>
+    );
+
+    const { asFragment } = render(LoginRendered());
+
+    expect(asFragment()).toMatchSnapshot();
   });
-
-  test('Should render button text correctly', () => {
-    const { getByText } = render(<Button {...defaultProps} />);
-    expect(getByText(/Submit/)).toBeInTheDocument();
-  });
-
-  test('Should call the onClick handler when it is provided', () => {
-    const { getByText } = render(<Button {...defaultProps} />);
-  });
-
-  test("Should have class 'primary' if Button variant is primary", () => {});
-
-  test('Should not fail any accessibility tests', async () => {});
 });

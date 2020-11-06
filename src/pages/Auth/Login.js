@@ -45,7 +45,7 @@ const Login = ({ history }) => {
     }
   };
   return (
-    <form onSubmit={handleSubmit} className={styles.Auth}>
+    <form onSubmit={handleSubmit} className={styles.Auth} data-testid="form">
       <h3>Welcome Back</h3>
       <div className={styles.AuthBody}>
         <Input
