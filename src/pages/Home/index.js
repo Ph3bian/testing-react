@@ -21,7 +21,10 @@ const Home = () => {
   const [isShown, setShown] = useState(false);
   const [errors, setErrors] = useState({});
   const [currentPost, setCurrentPost] = useState('');
-  const { isLoading, isError, data, error } = useQuery('Posts', getPosts);
+  const { isLoading, isError, data, error, refetch } = useQuery(
+    'Posts',
+    getPosts
+  );
   const handlePost = ({ target: { value, name } }) => {
     return setPost({ ...post, [name]: value });
   };
@@ -33,6 +36,7 @@ const Home = () => {
         setLoading(false);
         toaster.success('Create Post successful');
         setPost({ title: '', description: '' });
+        refetch();
         return;
       } else {
         toaster.danger('Create Post failed');
@@ -44,7 +48,7 @@ const Home = () => {
     }
   };
 
-  if (isLoading || isError) {
+  if (isError) {
     return (
       <Pane zIndex={1} flexShrink={0} elevation={0} backgroundColor="white">
         <Pane
@@ -65,37 +69,58 @@ const Home = () => {
   }
   return (
     <div className={styles.Home}>
-      <div className={styles.HomeContent}>
-        {data &&
-          data.map((posts, sn) => (
-            <div key={sn} className={styles.Posts}>
-              <h3>{posts.title}</h3>
-              <p className="textArea">{posts.description}</p>
-              <div className={styles.PostsAction}>
-                <p> {formatDistance(new Date(posts.updated_at), new Date())}</p>
-                <div>
-                  <Badge marginY={8} marginRight={12} iconBefore={EditIcon}>
-                    Edit
-                  </Badge>
-                  <Badge
-                    marginY={8}
-                    marginRight={12}
-                    iconBefore={TrashIcon}
-                    intent="danger"
-                    type="button"
-                    onClick={() => {
-                      setCurrentPost(posts.id)
-                      setShown(true);
-                      return
-                    }}
-                  >
-                    Delete
-                  </Badge>
+      {isLoading || isError ? (
+        <Pane zIndex={1} flexShrink={0} elevation={0} backgroundColor="white">
+          <Pane
+            backgroundColor="white"
+            elevation={0}
+            height={240}
+            display="flex"
+            alignItems="center"
+            justifyContent="center"
+          >
+            <Text>
+              {isError && error.message}
+              {isLoading && 'Loading Post'}
+            </Text>
+          </Pane>
+        </Pane>
+      ) : (
+        <div className={styles.HomeContent}>
+          {data &&
+            data.map((posts, sn) => (
+              <div key={sn} className={styles.Posts}>
+                <h3>{posts.title}</h3>
+                <p className="textArea">{posts.description}</p>
+                <div className={styles.PostsAction}>
+                  <p>
+                    {' '}
+                    {formatDistance(new Date(posts.updated_at), new Date())}
+                  </p>
+                  <div>
+                    <Badge marginY={8} marginRight={12} iconBefore={EditIcon}>
+                      Edit
+                    </Badge>
+                    <Badge
+                      marginY={8}
+                      marginRight={12}
+                      iconBefore={TrashIcon}
+                      intent="danger"
+                      type="button"
+                      onClick={() => {
+                        setCurrentPost(posts.id);
+                        setShown(true);
+                        return;
+                      }}
+                    >
+                      Delete
+                    </Badge>
+                  </div>
                 </div>
               </div>
-            </div>
-          ))}
-      </div>
+            ))}
+        </div>
+      )}
       <div className={styles.HomeEdit}>
         <div className={styles.Editor}>
           <form onSubmit={handleSubmit}>
@@ -128,7 +153,14 @@ const Home = () => {
             </div>
           </form>
         </div>
-        {isShown && <Delete isShown={isShown} setShown={setShown} currentPost={currentPost} />}
+        {isShown && (
+          <Delete
+            isShown={isShown}
+            setShown={setShown}
+            currentPost={currentPost}
+            refetch={refetch}
+          />
+        )}
       </div>
     </div>
   );

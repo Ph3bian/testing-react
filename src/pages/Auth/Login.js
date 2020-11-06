@@ -70,7 +70,7 @@ const Login = ({ history }) => {
           {' '}
           Submit
         </Button>
-        <Link to="/create-account"> Don't have an Account? Register</Link>
+        <Link to="/create-account"> Don't have an Account? </Link>
       </div>
     </form>
   );

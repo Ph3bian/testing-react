@@ -1,4 +1,5 @@
 import React, {useContext, useState } from 'react';
+import { Link } from 'react-router-dom';
 import { toaster } from "evergreen-ui"
 import AuthContext from 'context/AuthContext';
 import Input from 'components/Input';
@@ -99,6 +100,7 @@ const RegisterUser = ({history}) => {
         <Button type="submit" isLoading={loading}>
           Submit
         </Button>
+        <Link to="/login"> Sign in? </Link>
       </div>
     </form>
   );

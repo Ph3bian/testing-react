@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { Pane, Dialog, toaster } from 'evergreen-ui';
 import { deletePost } from 'services/post';
-const Delete = ({ isShown, setShown, currentPost }) => {
+const Delete = ({ isShown, setShown, currentPost, refetch }) => {
   const [loading, setLoading] = useState(false);
   const handleDelete = async () => {
     try {
@@ -11,6 +11,7 @@ const Delete = ({ isShown, setShown, currentPost }) => {
         setLoading(false);
         console.log(res);
         toaster.success('Post Deleted');
+        refetch()
         setShown(false);
         return;
       } else {

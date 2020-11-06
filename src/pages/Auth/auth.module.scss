@@ -5,11 +5,11 @@
   font-size: 1rem;
   background: $white;
   border-radius: 5px;
-  font-family: "Poppins";
+  font-family: 'Poppins';
   display: grid;
   height: 100%;
   grid-template-rows: auto 1fr auto;
-  grid-row-gap:1em;
+  grid-row-gap: 1em;
   grid-template-areas:
     'header'
     'body'
@@ -21,17 +21,17 @@
   h3 {
     text-align: center;
     margin-top: 0;
-    margin-bottom: 1.5em;
+    margin-bottom: 0.2em;
     font-family: 'Poppins';
     font-weight: 400;
     grid-area: header;
     &::after {
       content: '';
       display: block;
-      height: 0.15em;
-      width: 2em;
-      background: $primary-color;
-      margin: auto;
+      height: 1px;
+      width: 100%;
+      background: #f0f4f9;
+      margin: 0.5em auto;
       border-radius: 0.1em;
     }
   }
@@ -50,6 +50,18 @@
     grid-area: footer;
     button {
       margin: 1em 0 0;
+    }
+    a {
+      text-align: right;
+      margin-left: auto;
+      display: block;
+      text-decoration: none;
+      color: inherit;
+      font-size: 0.8em;
+      margin-top: 1em;
+      &:hover {
+        color: $primary-color;
+      }
     }
   }
 
