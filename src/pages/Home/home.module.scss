@@ -16,5 +16,24 @@
   }
   &Edit {
     background: #f5f7fd;
+    height: 100%;
+    .Editor {
+        display: grid;
+        align-items: center;
+        height: 100%;
+      &Card {
+        
+        margin: 4em 3em;
+        background: white;
+        padding: 1.5em .5em;
+        border-radius: 5px;
+        min-height: 35em;
+        textarea{
+            height: 28em;
+            border: 1px solid #f0f4f9;
+            box-shadow: unset;
+        }
+      }
+    }
   }
 }

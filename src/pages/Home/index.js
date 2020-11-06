@@ -1,10 +1,36 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { useQuery } from 'react-query';
-import { Pane, Text } from 'evergreen-ui';
-import { getPosts } from 'services/post';
+import { Pane, Text, toaster, Textarea } from 'evergreen-ui';
+import Button from 'components/Button';
+import Input from 'components/Input';
+import { getPosts, createPost } from 'services/post';
 import styles from './home.module.scss';
 const Home = () => {
+  const [post, setPost] = useState({ title: '', description: '' });
+  const [loading, setLoading] = useState(false);
+  const [errors, setErrors] = useState({});
   const { isLoading, isError, data, error } = useQuery('Posts', getPosts);
+  const handlePost = ({ target: { value, name } }) => {
+    return setPost({ ...post, [name]: value });
+  };
+  const handleSubmit = async () => {
+    setLoading(true);
+    try {
+      const res = await createPost(post);
+      if (res) {
+        setLoading(false);
+        toaster.success('Create Post successful');
+        setPost({ title: '', description: '' });
+        return;
+      } else {
+        toaster.danger('Create Post failed');
+        setLoading(false);
+      }
+    } catch (e) {
+      setLoading(false);
+      toaster.danger('Create Post failed');
+    }
+  };
 
   if (isLoading || isError) {
     return (
@@ -38,7 +64,31 @@ const Home = () => {
       </div>
       <div className={styles.HomeEdit}>
         <div className={styles.Editor}>
-          
+          <form>
+            <div className={styles.EditorCard}>
+              <Input
+                type="text"
+                label="Title"
+                name="title"
+                value={post.title}
+                onChange={(e) => handlePost(e)}
+                error={errors.post}
+              />
+              <Textarea
+                type="text"
+                label=""
+                placeholder="Enter here..."
+                name="description"
+                value={post.description}
+                className={styles.description}
+                onChange={(e) => handlePost(e)}
+              ></Textarea>
+               <Button type="button" onClick={handleSubmit} isLoading={loading}>
+                Submit
+              </Button>
+            </div>
+           
+          </form>
         </div>
       </div>
     </div>
