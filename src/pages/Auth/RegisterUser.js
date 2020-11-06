@@ -97,10 +97,8 @@ const RegisterUser = ({history}) => {
         />
       </div>
       <div className={styles.AuthFooter}>
-        <Button type="submit" isLoading={loading}>
-          Submit
-        </Button>
-        <Link to="/login"> Sign in? </Link>
+      <Button type="submit" isLoading={loading} title="Submit" />
+        <Link to="/login"> Log in? </Link>
       </div>
     </form>
   );

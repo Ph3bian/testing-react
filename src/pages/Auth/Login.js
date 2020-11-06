@@ -8,7 +8,7 @@ import { loginValidator } from './validation';
 import styles from './auth.module.scss';
 import { loginUser } from 'services/auth';
 const Login = ({ history }) => {
-  const {setAuthAndCache} = useContext(AuthContext);
+  const { setAuthAndCache } = useContext(AuthContext);
   const [errors, setErrors] = useState({});
   const [loading, setLoading] = useState(false);
   const [user, setUser] = useState({
@@ -32,7 +32,7 @@ const Login = ({ history }) => {
         setLoading(false);
         console.log(res);
         toaster.success('Create device successful');
-        setAuthAndCache(res.data)
+        setAuthAndCache(res.data);
         history.push('/home');
         return;
       } else {
@@ -66,10 +66,8 @@ const Login = ({ history }) => {
         />
       </div>
       <div className={styles.AuthFooter}>
-        <Button type="submit" isLoading={loading}>
-          {' '}
-          Submit
-        </Button>
+        <Button type="submit" isLoading={loading} title="Submit" />
+
         <Link to="/create-account"> Don't have an Account? </Link>
       </div>
     </form>

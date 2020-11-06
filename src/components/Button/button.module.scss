@@ -13,6 +13,17 @@
   background: $primary-color;
   &:hover{
     color: $white;
-    background: lighten($color: $primary-color, $amount: .4);
+    background-color: transparentize($primary-color, 0.1);
+    
+  }
+  &.neutral {
+    border: $light-grey 1px solid;
+    background-color:$light-grey;
+    color: $primary-color;
+  }
+  &.primary {
+    border: $primary-color 1px solid;
+    background-color: $primary-color;
+    color: $white;
   }
 }

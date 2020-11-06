@@ -1,7 +1,7 @@
 @import '../../styles/variables';
 
 .Input {
-  font-family: "Poppins";
+  font-family: 'Poppins';
   margin-bottom: 0.5em;
   font-size: 1rem;
   outline: none;
@@ -9,28 +9,29 @@
   justify-content: center;
   grid-template-columns: 100%;
   label {
-    font-size: .85em;
-    margin-bottom: .25em;
+    font-size: 0.85em;
+    margin-bottom: 0.25em;
     outline: none;
   }
   input {
     height: 2em;
-    padding: 0.25em .5em;
+    padding: 0.25em 0.5em;
     border-radius: 3px;
     border: 1px solid $light-grey;
     font-family: inherit;
-    font-size: .9em;
+    font-size: 0.9em;
     &:active,
-    &:focus {
+    &:focus,
+    &:hover {
       border-color: $primary-color;
       outline: none;
     }
-    &.Error{
-      border-color: $danger; 
+    &.Error {
+      border-color: $danger;
     }
   }
   span {
     color: $danger;
-    font-size: .75em;
+    font-size: 0.75em;
   }
 }
