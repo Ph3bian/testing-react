@@ -2,7 +2,7 @@ import axios from 'axios'
 import { getDefaultAuth, setLogout } from '../context/AuthContext'
 
 let Axios = axios.create({
-  baseURL: 'http://127.0.0.1:3333',
+  baseURL: 'https://my-journal-api.herokuapp.com',
   headers: {
     'Content-Type': 'application/json'
   }
