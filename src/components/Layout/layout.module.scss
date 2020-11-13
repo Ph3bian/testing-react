@@ -1,4 +1,12 @@
 @import '../../styles/variables';
+body{
+  margin:0;
+  font-family: "Poppins";
+  color: #435a6f;
+}
+::-webkit-scrollbar {
+  display: none;
+}
 .Public {
   display: grid;
   height: 100vh;
